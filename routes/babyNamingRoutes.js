@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 const { submitForm, getAllEntries } = require('../controllers/babyNamingController');
 
-router.post('/submit', submitForm);
+router.post('/', submitForm);
 router.get('/', getAllEntries); // optional for admin use
 
 module.exports = router;

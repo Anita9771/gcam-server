@@ -10,7 +10,7 @@ const transporter = nodemailer.createTransport({
 
 exports.sendWelcomeEmail = async (email, name) => {
   await transporter.sendMail({
-    from: '"Church Admin" <admin@church.org>',
+    from: `"GCAM INTERNATIONAL" <${process.env.EMAIL_USER}>`,
     to: email,
     subject: "Welcome to Our Church!",
     html: `<p>Hello ${name}, your profile has been created successfully!</p>`,

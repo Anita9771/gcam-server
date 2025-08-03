@@ -81,7 +81,7 @@ exports.resetPassword = async (req, res) => {
     });
 
     await transporter.sendMail({
-      from: process.env.EMAIL_USER,
+      from: `"GCAM INTERNATIONAL" <${process.env.EMAIL_USER}>`,
       to: email,
       subject: 'Password Reset Confirmation',
       html: `
@@ -106,8 +106,9 @@ exports.sendResetLink = async (req, res) => {
     if (!user) return res.status(404).json({ message: 'Email not found' });
 
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '15m' });
-    const resetURL = `http://localhost:3000/reset-password/${token}`;
-
+    const resetURL = `${process.env.FRONTEND_URL}/reset-password/${token}`;
+    console.log(`Reset URL: ${resetURL}`); // For debugging
+    
     const transporter = nodemailer.createTransport({
       service: 'Gmail',
       auth: {
@@ -117,7 +118,7 @@ exports.sendResetLink = async (req, res) => {
     });
 
     await transporter.sendMail({
-      from: process.env.EMAIL_USER,
+      from: `"GCAM INTERNATIONAL" <${process.env.EMAIL_USER}>`,
       to: email,
       subject: 'Password Reset',
       html: `<p>Click to reset your password: <a href="${resetURL}">${resetURL}</a></p>`

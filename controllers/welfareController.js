@@ -11,4 +11,14 @@ const submitWelfare = async (req, res) => {
   }
 };
 
-module.exports = { submitWelfare };
+const getWelfareEntries = async (req, res) => {
+  try {
+    const welfareEntries = await Welfare.find();
+    res.status(200).json(welfareEntries);
+  } catch (error) {
+    console.error("Failed to retrieve welfare entries:", error);
+    res.status(500).json({ message: "Failed to retrieve welfare entries" });
+  }
+};
+
+module.exports = { submitWelfare, getWelfareEntries };

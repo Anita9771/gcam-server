@@ -10,4 +10,13 @@ const submitEnquiry = async (req, res) => {
   }
 };
 
-module.exports = { submitEnquiry };
+const getEnquiries = async (req, res) => {
+  try {
+    const enquiries = await Enquiry.find();
+    res.status(200).json(enquiries);
+  } catch (error) {
+    res.status(500).json({ message: "Failed to retrieve enquiries" });
+  }
+};
+
+module.exports = { submitEnquiry, getEnquiries };
