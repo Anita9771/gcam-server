@@ -5,6 +5,7 @@ const programAttendanceSchema = new mongoose.Schema({
   email: String,
   phone: String,
   program: String,
+  minister: String,
   date: {
     type: Date,
     default: Date.now,

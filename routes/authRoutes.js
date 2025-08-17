@@ -19,3 +19,4 @@ router.post("/admin/login", login);
 // create the first admin manually or expose /register temporarily
 router.post("/admin/register", register);
 module.exports = router;
+
